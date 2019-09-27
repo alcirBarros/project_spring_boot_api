@@ -22,7 +22,7 @@ public class ProjectSapHanaApplication {
 
     @Autowired
     private DataSource dataSource;
-    
+
     @Autowired
     EmployeeService employeeService;
 
@@ -30,33 +30,11 @@ public class ProjectSapHanaApplication {
         SpringApplication.run(ProjectSapHanaApplication.class, args);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/plain")
     @ResponseBody
-    String home() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Hello World !!");
-        
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<Employee> home() {
         List<Employee> findAllEmployee = employeeService.findAllEmployee();
-
-        // Remove comment if Hana database support is enabled.
-//        builder.append("\n\nJDBC connection available: ");
-//        try {
-//            Connection conn = dataSource.getConnection();
-//            if (conn != null) {
-//                builder.append("yes");
-//                builder.append("\n\nCurrent Hana DB user:\n");
-//                String userName = getCurrentUser(conn);
-//                builder.append(userName);
-//                builder.append("\n\nCurrent Hana schema:\n");
-//                builder.append(getCurrentSchema(conn));
-//            } else {
-//                builder.append("no");
-//            }
-//        } catch (SQLException e) {
-//            builder.append("no");
-//        }
-
-        return builder.toString();
+        return findAllEmployee;
     }
 
     //  Remove comment if Hana database support is enabled.

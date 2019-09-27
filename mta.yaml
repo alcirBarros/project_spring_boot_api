@@ -1,0 +1,14 @@
+ID: spring_project_id
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: project_spring_boot_api
+   type: java
+   path: project_spring_boot_api
+   parameters:
+      memory: 512M
+   provides:
+    - name: project_spring_boot_api_api
+      properties:
+         url: ${default-url}

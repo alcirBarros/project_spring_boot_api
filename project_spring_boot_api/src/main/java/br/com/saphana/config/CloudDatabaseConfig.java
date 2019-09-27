@@ -66,7 +66,7 @@ public class CloudDatabaseConfig {
         Map<String, String> properties = new HashMap<>();
         properties.put(AvailableSettings.DRIVER, com.sap.db.jdbc.Driver.class.getName());
         properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.HANAColumnStoreDialect");
-        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+//        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         properties.put(AvailableSettings.SHOW_SQL, "true");
         properties.put(AvailableSettings.FORMAT_SQL, "true");
 

@@ -35,9 +35,9 @@ public class CloudDatabaseConfig {
     @Bean(name = "mysqlDataSource")
     public DataSource dataSource() {
         DataSourceSAP dataSource = new DataSourceSAP();
-        dataSource.setUrl("jdbc:sap://hxehost:39013/?currentschema=BANCO_DE_DADOS_HDI_DB");
-        dataSource.setUser("BANCO_DE_DADOS_HDI_DB_6LVOV4LJY9TQH0X8LPTIY1P8I_RT");
-        dataSource.setPassword("Rj9Yse4wzMl1i39VaOORFflpgzKhKiuZamOLept8lBX5J2plVJpOxPbbMpDrqJwI9ldGFL_sGY4-13h5UTFdDCMpw2aPwgfE273XaSD3aSNrod-cWv4lx4K3Ncvw7x7z");
+        dataSource.setUrl("jdbc:sap://hxehost:39013/ALCIBARROS?createDatabaseIfNotExist=true");
+        dataSource.setUser("ALCIBARROS");
+        dataSource.setPassword("f6g4v5AL");
         dataSource.setServerName("hxehost");
         return dataSource;
     }
@@ -66,7 +66,7 @@ public class CloudDatabaseConfig {
         Map<String, String> properties = new HashMap<>();
         properties.put(AvailableSettings.DRIVER, com.sap.db.jdbc.Driver.class.getName());
         properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.HANAColumnStoreDialect");
-//        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         properties.put(AvailableSettings.SHOW_SQL, "true");
         properties.put(AvailableSettings.FORMAT_SQL, "true");
 

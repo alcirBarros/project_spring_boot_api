@@ -8,22 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pss_pessoa")
+@Table(name = "PESSOA.PSS_PESSOA")
 public class Pessoa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pss_id")
-    private int id;
+    @Column(name = "PSS_ID")
+    private Long id;
 
-    @Column(name = "pss_nome")
+    @Column(name = "PSS_NOME")
     private String nome;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

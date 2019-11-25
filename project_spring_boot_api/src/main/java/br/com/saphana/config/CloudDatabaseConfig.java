@@ -15,13 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import org.hibernate.boot.SchemaAutoTooling;
 import org.hibernate.cfg.AvailableSettings;
-import org.hibernate.dialect.H2Dialect;
-import org.hibernate.dialect.SAPDBDialect;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
 @Configuration
 @EnableTransactionManagement
@@ -35,10 +30,11 @@ public class CloudDatabaseConfig {
     @Bean(name = "mysqlDataSource")
     public DataSource dataSource() {
         DataSourceSAP dataSource = new DataSourceSAP();
-        dataSource.setUrl("jdbc:sap://hxehost:39013/ALCIBARROS?createDatabaseIfNotExist=true");
-        dataSource.setUser("ALCIBARROS");
-        dataSource.setPassword("f6g4v5AL");
+        dataSource.setUrl("jdbc:sap://hxehost:39013/PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT?createDatabaseIfNotExist=true");
+        dataSource.setUser("PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT");
+        dataSource.setPassword("Af0Ecnfheg4hpR0Jy3--AA-BU926J1uf0gI_joB7BzlK9jYhoa_HMrzb2KXjRqK1GsHIIajU6QcifvX5VSFag7qSfIEG0_qdIx4HfTzuuE5IvxjlULprBLR4Prod8rVB");
         dataSource.setServerName("hxehost");
+        dataSource.setSchema("PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT");
         return dataSource;
     }
 
@@ -66,7 +62,7 @@ public class CloudDatabaseConfig {
         Map<String, String> properties = new HashMap<>();
         properties.put(AvailableSettings.DRIVER, com.sap.db.jdbc.Driver.class.getName());
         properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.HANAColumnStoreDialect");
-        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+       // properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         properties.put(AvailableSettings.SHOW_SQL, "true");
         properties.put(AvailableSettings.FORMAT_SQL, "true");
 

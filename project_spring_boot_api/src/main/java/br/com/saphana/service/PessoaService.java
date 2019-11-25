@@ -1,7 +1,7 @@
 package br.com.saphana.service;
 
-import br.com.saphana.models.Employee;
-import br.com.saphana.repository.EmployeeRepository;
+import br.com.saphana.models.Pessoa;
+import br.com.saphana.repository.PessoaRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmployeeService {
+public class PessoaService {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private PessoaRepository employeeRepository;
 
     public long getCount() {
         long count = employeeRepository.count();
         return count;
     }
 
-    public List<Employee> findAllEmployee() {
-        List<Employee> employee = new ArrayList<>();
+    public List<Pessoa> findAllPessoa() {
+        List<Pessoa> employee = new ArrayList<>();
         employeeRepository.findAll().forEach(employee::add);
         return employee;
     }
 
-    public boolean insertEmployee(Employee employee) {
+    public boolean insertPessoa(Pessoa employee) {
         try {
             employeeRepository.save(employee);
             return true;
@@ -34,13 +34,13 @@ public class EmployeeService {
         }
     }
 
-    public Employee findEmployeeById(Long id) {
-        Employee employee = employeeRepository.findById(id).orElse(null);
+    public Pessoa findPessoaById(Long id) {
+        Pessoa employee = employeeRepository.findById(id).orElse(null);
         return employee;
     }
 
-    public boolean deleteEmployee(long id) {
-        Employee employee = employeeRepository.findById(id).orElse(null);
+    public boolean deletePessoa(long id) {
+        Pessoa employee = employeeRepository.findById(id).orElse(null);
         if (employee != null) {
             employeeRepository.delete(employee);
             return true;

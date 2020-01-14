@@ -27,42 +27,39 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class CloudDatabaseConfig {
 
-    @Bean(name = "mysqlDataSource")
+    @Bean()
     public DataSource dataSource() {
         DataSourceSAP dataSource = new DataSourceSAP();
-        dataSource.setUrl("jdbc:sap://hxehost:39013/PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT?createDatabaseIfNotExist=true");
-        dataSource.setUser("PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT");
-        dataSource.setPassword("Af0Ecnfheg4hpR0Jy3--AA-BU926J1uf0gI_joB7BzlK9jYhoa_HMrzb2KXjRqK1GsHIIajU6QcifvX5VSFag7qSfIEG0_qdIx4HfTzuuE5IvxjlULprBLR4Prod8rVB");
+        dataSource.setUrl("jdbc:sap://hxehost:39013/?currentschema=ALCIBARROS");
+        dataSource.setUser("alcibarros");
+        dataSource.setPassword("f6g4v5AL");
         dataSource.setServerName("hxehost");
-        dataSource.setSchema("PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2_ERK0UKTR4PMFF7D2DKCFCOGGL_RT");
+        dataSource.setSchema("ALCIBARROS");
         return dataSource;
     }
-
-//    @Bean(name = "mysqlDataSource")
-//    public DataSource dataSource() {
-//        DataSourceSAP dataSource = new DataSourceSAP();
-//        dataSource.setUrl("jdbc:sap://hxehost:39013/DATABASEHANA_HDI_DB");
-//        dataSource.setUser("DATABASEHANA_HDI_DB_0SUBUUYORM7TF4UKMB53M0SGF_RT");
-//        dataSource.setPassword("Eh36Bx49spVdtFYzTnJ0WlKa0hWakQNb2_9vc8O1awX6hmhDzh59iGG._X67RoL8fAD_NR8SyQDqw86BBDVlnytCm2kwseT5LpfyVbIZjCoX43cYEGDwiNkVozFaYsaL");
-//        dataSource.setServerName("hxehost");
-//        return dataSource;
-//    }
+    
 //    @Bean(name = "mysqlDataSource")
 //    public DataSource dataSource() {
 //        DriverManagerDataSource dataSource = new DriverManagerDataSource();
 //        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/admin_company?useSSL=false&createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/PGRSAPI_PGRSAPI_DB_HDI_CONTAINER_2?useSSL=false&createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC");
 //        dataSource.setUsername("root");
 //        dataSource.setPassword("root");
 //        return dataSource;
 //    }
+
     @Bean(name = "mysqlEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(EntityManagerFactoryBuilder builder, @Qualifier("mysqlDataSource") DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(EntityManagerFactoryBuilder builder, DataSource dataSource) {
 
         Map<String, String> properties = new HashMap<>();
-        properties.put(AvailableSettings.DRIVER, com.sap.db.jdbc.Driver.class.getName());
-        properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.HANAColumnStoreDialect");
-       // properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+        
+         properties.put(AvailableSettings.DRIVER, com.sap.db.jdbc.Driver.class.getName());
+         properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.HANAColumnStoreDialect");
+
+//        properties.put(AvailableSettings.DRIVER, "com.mysql.cj.jdbc.Driver");
+//        properties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        
+        properties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         properties.put(AvailableSettings.SHOW_SQL, "true");
         properties.put(AvailableSettings.FORMAT_SQL, "true");
 
